@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+}
+main{
+    width: 100%;
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.b_1{
+    width: 56.25rem;
+    height: 29rem;
+    background-image: url("https://cdn.wallpapersafari.com/11/43/EXVgK1.png");
+    background-size: cover;
+    position: absolute;
+}
+.ball_1{
+    position: absolute;
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 50%;
+    background-image: url("https://media.giphy.com/media/3o7TKR1b2X2JqJ6JDW/giphy.gif");
+    background-size: cover;
+}
+.ball_2{
+    position: absolute;
+    left: 50rem;
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 50%;
+    background-image: url("https://media.giphy.com/media/3oriNZN3vh5XFSr8Gc/giphy.gif");
+    background-size: cover;
+}
+.gameOveer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32.5rem;
+    height: 18.5rem;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSPo2K2l2FIOLiBG_Y3tMn52ndAo02VjF3Ag&usqp=CAU");
+    background-size: cover;
+    display: none;
+}
+.button-gameover{
+    position: relative;
+    top: 100px;
+    font-size: 25px;
+}
