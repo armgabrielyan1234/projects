@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: 100px;
+    background: #6d6d6d;
+    box-shadow: 0 15px 30px 10px rgba(0, 0, 0, .5);
+    overflow: hidden;
+}
+
+.left-side{
+    width: 25%;
+}
+.input-side{
+    width: 50%;
+}
+.right-side{
+    width: 50%;
+}
+.header-sides{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#logo{
+    width: 188px;
+    height: 100px;
+    background-size: cover;
+}
+
+.search-input {
+    height: 100%;
+    width: 800px;
+    padding-top: 2.6875rem;
+    padding-left: 30px;
+}
+.search-input input{
+    font-size: 15px;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.25rem;
+    padding: 0 10px 0 36px;
+    border: none;
+    border-radius: 18px;
+    outline: none;
+    background-color: #f0f0f0;
+}
+
+
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+.movie-details {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#movie-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#movie-poster {
+    max-width: 100%;
+    width: 280px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#movie-release-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#movie-overview {
+    margin-bottom: 20px;
+}
+
+#load-video {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#load-video:hover {
+    background-color: #0056b3;
+}
+
+footer{
+    height: 88px;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 40px;
+    justify-content: space-between;
+    margin: 20px;
+}
+footer img{
+    width: 100px;
+    height: 100px;
+}
+
+#loading-container {
+    display: none;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1098px) {
+    header {
+        height:111px; 
+    }
+    .left-side {
+        width: 20%; 
+    }
+    .input-side {
+        width: 360px;
+    }
+    #logo {
+        width: 120px; 
+    }
+    .search-input {
+        width: 100%; 
+    }
+}
