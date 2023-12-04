@@ -5,7 +5,9 @@ export default function Main() {
   return (
     <div>
       <Header />
-      <div></div>
+      <div>
+        <p>asdjaskjdhasldkvjl</p>
+      </div>
       <Footer />
     </div>
   );
