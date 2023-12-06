@@ -1,148 +1,34 @@
+import { useState } from "react";
+import useRequest from "../../request";
 import Footer from "./footer";
 import Header from "./header";
+import RatedMovies from "./mostRatedMovies";
+import PopularMovie from "./popularMovie";
+import UpcomingMovie from "./upcomingMovie";
 
 export default function Main() {
+  const popularMovie = useRequest(
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
+  );
+  const upcomingMovie = useRequest(
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+  );
+  const ratedMovie = useRequest(
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1"
+  );
+
   return (
     <div>
       <Header />
       <div>
         <div className="bg-gradient-to-r from-gray-600  to-gray-700">
-          <div className="flex flex-row pl-5 pt-8 space-x-[50px] flex-wrap p-2">
-            <div className="w-[600px] rounded-2xl h-[300px]  bg-black">
-              <img src="" className="w-full rounded-2xl h-full" alt="" />
-            </div>
-            <div className="w-[300px] rounded-2xl h-[300px]  bg-black">
-              <img src="" className="w-full rounded-2xl h-full" alt="" />
-            </div>
-            <div className="w-[300px] rounded-2xl h-[300px]  bg-black">
-              <img src="" className="w-full rounded-2xl h-full" alt="" />
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text text-2xl mt-5 text-yellow-400">
-                Watch EveryWhere
-              </h1>
-              <p className="text-lg text-white">
-                Stream unlimited movies and TV shows on your phone, tablet,
-                laptop, and TV without paying more.
-              </p>
-            </div>
-          </div>
+          <UpcomingMovie upcomingMovie={upcomingMovie} />
         </div>
         <div>
-          <h1 className="text text-4xl text-center mt-5">Most popular Films</h1>
-          <div className="flex gap-5 flex-wrap mt-5">
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
-            <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-              <div className="bg-black">
-                <img src="" className="w-[200px] h-[180px]" alt="" />
-                <br />
-                <br />
-                <h1 className="text text-2xl text-white">Name Film</h1>
-              </div>
-            </div>
+          <div className="flex justify-center gap-5 flex-wrap mt-5">
+            <PopularMovie popularMovie={popularMovie} />
 
-            <div className="mt-10">
-              <h1 className="text text-4xl text-center mt-5">
-                Most Rated Films
-              </h1>
-              <div className="flex gap-5 justify-around flex-wrap mt-5">
-                <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-                  <div className="bg-black">
-                    <img src="" className="w-[200px] h-[180px]" alt="" />
-                    <br />
-                    <br />
-                    <h1 className="text text-2xl text-white">Name Film</h1>
-                  </div>
-                </div>
-                <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-                  <div className="bg-black">
-                    <img src="" className="w-[200px] h-[180px]" alt="" />
-                    <br />
-                    <br />
-                    <h1 className="text text-2xl text-white">Name Film</h1>
-                  </div>
-                </div>
-                <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-                  <div className="bg-black">
-                    <img src="" className="w-[200px] h-[180px]" alt="" />
-                    <br />
-                    <br />
-                    <h1 className="text text-2xl text-white">Name Film</h1>
-                  </div>
-                </div>
-                <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-                  <div className="bg-black">
-                    <img src="" className="w-[200px] h-[180px]" alt="" />
-                    <br />
-                    <br />
-                    <h1 className="text text-2xl text-white">Name Film</h1>
-                  </div>
-                </div>
-                <div className="w-[250px] h-[300px]  rounded-2xl border-[5px] p-5 border-yellow-300">
-                  <div className="bg-black">
-                    <img src="" className="w-[200px] h-[180px]" alt="" />
-                    <br />
-                    <br />
-                    <h1 className="text text-2xl text-white">Name Film</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <RatedMovies ratedMovie={ratedMovie} />
           </div>
         </div>
       </div>
