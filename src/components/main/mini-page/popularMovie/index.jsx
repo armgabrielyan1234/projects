@@ -11,9 +11,9 @@ export default function PopularMovie({ popularMovie }) {
               <div className="card-container w-[300px] h-[350px] rounded-2xl border-[5px] p-5 border-yellow-300">
                 <div className="">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+                    src={`${process.env.REACT_APP_HOST}${backdrop_path}`}
                     className="w-full h-[200px] mb-4"
-                    alt="Description of the image"
+                    alt=""
                   />
                   <br />
                   <br />

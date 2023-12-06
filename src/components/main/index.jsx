@@ -1,21 +1,14 @@
-import { useState } from "react";
 import useRequest from "../../request";
 import Footer from "./footer";
 import Header from "./header";
-import RatedMovies from "./mostRatedMovies";
-import PopularMovie from "./popularMovie";
-import UpcomingMovie from "./upcomingMovie";
+import RatedMovies from "./mini-page/mostRatedMovies";
+import PopularMovie from "./mini-page/popularMovie";
+import UpcomingMovie from "./mini-page/upcomingMovie";
 
 export default function Main() {
-  const popularMovie = useRequest(
-    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
-  );
-  const upcomingMovie = useRequest(
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
-  );
-  const ratedMovie = useRequest(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1"
-  );
+  const popularMovie = useRequest(process.env.REACT_APP_POPULAR_MOVIE);
+  const upcomingMovie = useRequest(process.env.REACT_APP_UPCOMING_MOVIE);
+  const ratedMovie = useRequest(process.env.REACT_APP_RATED_MOVIE);
 
   return (
     <div>
