@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
-function useRequest(url) {
+function useRequest(url, apiKey) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const request = useCallback(async () => {
     try {
+      setLoading(true);
       const response = await axios({
         url,
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0N2Q3Y2Y3NzA1ZWZjNWM4ZWE0OGZjZWNlY2I1N2FmOCIsInN1YiI6IjY0ZmYyZTY2ZTBjYTdmMDE0ZjZmZTZkYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mS8FppuTI5cQ8_jNZLp4nsZR8eVCVb1ij08aDRFW-Hs",
+          Authorization: `Bearer ${apiKey}`,
         },
       });
       if (response.data !== undefined) {
@@ -19,6 +20,8 @@ function useRequest(url) {
     } catch (error) {
       console.error("Error in request:", error);
       throw error;
+    } finally {
+      setLoading(false);
     }
   }, [url]);
 
@@ -26,7 +29,7 @@ function useRequest(url) {
     request();
   }, [request]);
 
-  return data;
+  return [data, loading];
 }
 
 export default useRequest;
