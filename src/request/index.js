@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 
 function useRequest(url, apiKey) {
   const [data, setData] = useState([]);
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const request = useCallback(async () => {
@@ -15,7 +16,8 @@ function useRequest(url, apiKey) {
         },
       });
       if (response.data !== undefined) {
-        setData(response.data.results);
+        setData(response.data);
+        setResults(response.data.results);
       }
     } catch (error) {
       console.error("Error in request:", error);
@@ -29,7 +31,7 @@ function useRequest(url, apiKey) {
     request();
   }, [request]);
 
-  return [data, loading];
+  return [data, loading, results];
 }
 
 export default useRequest;
