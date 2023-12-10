@@ -25,7 +25,7 @@ function useRequest(url, apiKey) {
     } finally {
       setLoading(false);
     }
-  }, [url]);
+  }, [url, apiKey]);
 
   useEffect(() => {
     request();

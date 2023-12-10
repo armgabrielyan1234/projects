@@ -1,5 +1,5 @@
 import React from "react";
-import useRequest from "../../request";
+import useRequest from "../../hooks/request";
 import RatedMovies from "./mini-page/mostRatedMovies";
 import PopularMovie from "./mini-page/popularMovie";
 import UpcomingMovie from "./mini-page/upcomingMovie";
@@ -22,17 +22,14 @@ export default function Main() {
     process.env.REACT_APP_API_KEY
   );
 
-  const isLoading =
-    popularMovieLoading || upcomingMovieLoading || ratedMovieLoading;
-
   return (
     <div>
-      {isLoading ? (
-        <div className="flex w-screen justify-center items-center">
+      {popularMovieLoading && upcomingMovieLoading && ratedMovieLoading ? (
+        <div className="flex w-screen  justify-center items-center">
           <img
             src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
             alt=""
-            width={500}
+            className="w-[500px]"
           />
         </div>
       ) : (

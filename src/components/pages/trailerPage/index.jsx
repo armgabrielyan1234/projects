@@ -1,14 +1,16 @@
 import React from "react";
-import useRequest from "../../../request";
+import useRequest from "../../../hooks/request";
 import { useParams } from "react-router-dom";
 
 export default function TrailerPage() {
-  const { uId } = useParams();
+  const { uId, trailerId } = useParams();
   const [data, loading, results] = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/videos?language=en-US`,
     process.env.REACT_APP_API_KEY
   );
-  const key = results && results.length > 0 ? results[0].key : null;
+
+  const key =
+    results && results.length > trailerId ? results[trailerId].key : null;
 
   return (
     <div>

@@ -1,12 +1,16 @@
-import { ClockIcon } from "@heroicons/react/24/outline";
 import { Link, useParams } from "react-router-dom";
 
 //import icons
+import { ClockIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/outline";
 import { BookmarkSquareIcon } from "@heroicons/react/24/outline";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { PlayIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 // import request
-import useRequest from "../../../request";
+import useRequest from "../../../hooks/request";
+import Container from "../../../hooks/container";
 
 export default function FilmPage() {
   const { uId } = useParams();
@@ -14,12 +18,31 @@ export default function FilmPage() {
     `https://api.themoviedb.org/3/movie/${uId}?language=en-US`,
     process.env.REACT_APP_API_KEY
   );
+
+  const [SimilarData, SimilarLoading, SimilarResults] = useRequest(
+    `https://api.themoviedb.org/3/movie/${uId}/similar?language=en-US&page=1`,
+    process.env.REACT_APP_API_KEY
+  );
+
+  const [TrailerData, TrailerLoading] = useRequest(
+    `https://api.themoviedb.org/3/movie/${uId}/images`,
+    process.env.REACT_APP_API_KEY
+  );
+  const [CreditData, CreditLoading, CreditResults] = useRequest(
+    `https://api.themoviedb.org/3/movie/${uId}/credits?language=en-US`,
+    process.env.REACT_APP_API_KEY
+  );
+
+  const trailers = TrailerData?.backdrops?.slice(0, 3) || [];
+  const actors = CreditData.cast ? CreditData.cast.slice(0, 3) : [];
+  const similar = SimilarResults ? SimilarResults.slice(0, 4) : [];
+
   const firstGenre =
-    data.genres && data.genres.length > 0 ? data.genres[0] : null;
+    data?.genres && data.genres.length > 0 ? data.genres[0] : null;
 
   return (
     <div>
-      {loading ? (
+      {loading && TrailerLoading && SimilarLoading ? (
         <div className="flex w-screen justify-center items-center">
           <img
             src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
@@ -28,46 +51,151 @@ export default function FilmPage() {
           />
         </div>
       ) : (
-        <div className="bg-gradient-to-r w-screen h-[400px] from-gray-600  to-gray-700">
-          <div className="flex justify-around pt-[25px]">
-            <Link to={`/trailer/${data.id}`}>
-              <div className="card-container  w-[300px] h-[350px] rounded-2xl border-[5px] ml-[70px] mr-10 border-yellow-300">
-                <img
-                  src={`${process.env.REACT_APP_HOST}${data.backdrop_path}`}
-                  className="w-full object-cover rounded-2xl h-full"
-                  alt=""
-                />
-              </div>
-            </Link>
-            <div>
-              <h1 className="text text-4xl mt-5 text-yellow-400">
-                {data.original_title}
-              </h1>
-              <div className="flex pt-5 flex-col space-y-10">
-                <div className="flex sm:space-x-10">
-                  <ClockIcon width={50} className="color text-yellow-300" />
-                  <h2 className="text text-4xl text-white">
-                    {data.popularity}
-                  </h2>
-                </div>
-                <div className="flex sm:space-x-10">
-                  <StarIcon width={50} className="color text-yellow-300" />
-                  <h2 className="text text-4xl text-white">
-                    {data.vote_average}
-                  </h2>
-                </div>
-                {firstGenre && (
-                  <div className="flex sm:space-x-10">
-                    <BookmarkSquareIcon
-                      width={50}
-                      className="color text-yellow-300"
-                    />
-                    <h2 className="text text-4xl text-white">
-                      {firstGenre.name}
-                    </h2>
+        <div className="w-screen">
+          <div className="bg-gradient-to-r w-full  from-gray-600  to-gray-700">
+            <div className="flex flex-col">
+              <div className="flex justify-center space-x-5 pt-[25px] ">
+                <div className="card-container justify-center flex items-center  h-[550px] rounded-2xl ">
+                  <img
+                    src={`${
+                      data.backdrop_path
+                        ? process.env.REACT_APP_HOST + data.backdrop_path
+                        : null
+                    }`}
+                    className="w-[350px] h-[350px] border-[5px] ml-[70px] mr-10 border-yellow-300 object-cover rounded-2xl "
+                    alt=""
+                  />
+
+                  <div>
+                    <h1 className="text text-4xl mt-5 text-yellow-400">
+                      {data?.original_title?.length > 30
+                        ? ` ${data.original_title.slice(0, 30)}...`
+                        : data.original_title}
+                    </h1>
+                    <div className="flex pt-5 flex-col space-y-10">
+                      <div className="flex  sm:space-x-10">
+                        <ClockIcon
+                          width={50}
+                          className="color text-yellow-300"
+                        />
+                        <h2 className="text text-4xl text-white">
+                          {data.release_date}
+                        </h2>
+                      </div>
+                      <div className="flex  sm:space-x-10">
+                        <StarIcon
+                          width={50}
+                          className="color text-yellow-300"
+                        />
+                        <h2 className="text text-4xl text-white">
+                          {data.vote_average}
+                        </h2>
+                      </div>
+                      {firstGenre && (
+                        <div className="flex sm:space-x-10">
+                          <BookmarkSquareIcon
+                            width={50}
+                            className="color text-yellow-300"
+                          />
+                          <h2 className="text text-4xl text-white">
+                            {firstGenre.name}
+                          </h2>
+                        </div>
+                      )}
+                      <div className="flex flex-wrap sm:flex-row  sm:space-x-10">
+                        <UserCircleIcon
+                          width={50}
+                          className="color text-yellow-300"
+                        />
+                        {actors.map(({ profile_path }, index) => {
+                          return (
+                            <div key={index} className="w-[90px] h-[90px]">
+                              <img
+                                src={`${process.env.REACT_APP_HOST}${profile_path}`}
+                                className="w-full rounded-[50%] object-cover border-[3px] border-yellow-300 h-full"
+                                alt=""
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
+              <br />
+              <div className="flex flex-col items-center justify-center">
+                <h1 className="text-4xl mt-8 text-white">Trailers</h1>
+                <div className="flex flex-wrap justify-center items-center h-[300px]">
+                  <div className="flex flex-wrap justify-center sm:space-x-4">
+                    {trailers.length > 0 ? (
+                      trailers.map((trailer, i) => (
+                        <div key={i}>
+                          <Link to={`/trailer/${data.id}/${i}`}>
+                            <div className="flex flex-wrap">
+                              <div className="w-[350px] relative">
+                                <div className="absolute bg-white opacity-60 rounded-[35px] inset-0 flex items-center  justify-center">
+                                  <PlayIcon className="w-20" />
+                                </div>
+                                <img
+                                  src={`${process.env.REACT_APP_HOST}${trailer.file_path}`}
+                                  alt={`Trailer ${i}`}
+                                  className="w-full h-[200px] object-cover rounded-[35px]"
+                                />
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="flex h-[310px] space-x-4 justify-center items-center">
+                        <ExclamationCircleIcon
+                          width={80}
+                          className="text-yellow-300"
+                        />
+                        <h1 className="text text-4xl">
+                          The Trailers does not found
+                        </h1>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col  items-center flex-wrap mt-10">
+            <div>
+              <h1 className="text text-4xl">Similar Films</h1>
+            </div>
+            <br />
+            <div className="flex flex-wrap space-x-5  m-5">
+              {similar.length > 0 ? (
+                similar.map(
+                  (
+                    { title, backdrop_path, vote_average, vote_count, id },
+                    i
+                  ) => {
+                    return backdrop_path !== null ? (
+                      <Link key={i} to={`/film/${id}`}>
+                        <Container
+                          backdrop_path={backdrop_path}
+                          vote_average={vote_average}
+                          title={title}
+                          vote_count={vote_count}
+                        />
+                      </Link>
+                    ) : null;
+                  }
+                )
+              ) : (
+                <div className="flex h-[100px] space-x-4 justify-center items-center">
+                  <ExclamationCircleIcon
+                    width={80}
+                    className="text-yellow-300"
+                  />
+                  <h1 className="text text-4xl">The Films does not found</h1>
+                </div>
+              )}
             </div>
           </div>
         </div>
