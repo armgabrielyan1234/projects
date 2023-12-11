@@ -67,7 +67,7 @@ export default function FilmPage() {
                   />
 
                   <div>
-                    <h1 className="text text-4xl mt-5 text-yellow-400">
+                    <h1 className="text text-4xl mt-5 font-bold text-yellow-400">
                       {data?.original_title?.length > 30
                         ? ` ${data.original_title.slice(0, 30)}...`
                         : data.original_title}
@@ -134,8 +134,8 @@ export default function FilmPage() {
                           <Link to={`/trailer/${data.id}/${i}`}>
                             <div className="flex  flex-wrap">
                               <div className="w-[350px] relative">
-                                <div className="absolute bg-white opacity-60 rounded-[35px] inset-0 flex items-center  justify-center">
-                                  <PlayIcon className="w-20 justify-center" />
+                                <div className="absolute bg-black opacity-60 rounded-[35px] inset-0 flex items-center  justify-center">
+                                  <PlayIcon className="w-20 justify-center text-white" />
                                 </div>
                                 <img
                                   src={`${process.env.REACT_APP_HOST}${trailer.file_path}`}

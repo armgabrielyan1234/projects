@@ -9,7 +9,7 @@ export default function RatedMovies({ ratedMovie }) {
       <h1 className="text text-4xl text-center font-semibold mt-5">
         Most rated films
       </h1>
-      <div className="flex  lg:space-x-10 gap-2 justify-center flex-wrap mt-10">
+      <div className="flex justify-center gap-5 flex-wrap mt-10">
         {displayedMovies.map(
           ({ title, backdrop_path, vote_average, vote_count, id }, i) => {
             return (

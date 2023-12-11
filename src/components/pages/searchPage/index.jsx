@@ -26,10 +26,10 @@ export default function SearchFilms() {
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap space-x-5 items-center justify-center">
+          <div className="flex flex-wrap h-screen space-x-5 items-center justify-center">
             <div className="flex justify-center gap-5 flex-wrap m-5">
               {results.length < 1 ? (
-                <div className="flex h-[310px] space-x-4 justify-center items-center">
+                <div className="flex space-x-4 justify-center items-center">
                   <ExclamationCircleIcon
                     width={80}
                     className="text-yellow-300"
