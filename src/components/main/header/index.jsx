@@ -1,5 +1,8 @@
-import { useState } from "react";
+//import icons
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+
+//import hooks
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useRequest from "../../../hooks/request";
 

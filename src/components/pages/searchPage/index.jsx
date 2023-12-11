@@ -1,10 +1,8 @@
-//import react components
-import { Link, useParams } from "react-router-dom";
-
 //import icons
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 
-//import request
+//import hooks
+import { Link, useParams } from "react-router-dom";
 import useRequest from "../../../hooks/request";
 import Container from "../../../hooks/container";
 

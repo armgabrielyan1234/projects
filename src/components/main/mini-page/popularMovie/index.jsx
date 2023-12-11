@@ -1,5 +1,5 @@
+//import hooks
 import { Link } from "react-router-dom";
-
 import Container from "../../../../hooks/container";
 
 export default function PopularMovie({ popularMovie }) {

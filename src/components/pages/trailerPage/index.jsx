@@ -1,4 +1,4 @@
-import React from "react";
+//import hooks
 import useRequest from "../../../hooks/request";
 import { useParams } from "react-router-dom";
 

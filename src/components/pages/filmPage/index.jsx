@@ -8,7 +8,7 @@ import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 
-// import request
+// import hooks
 import useRequest from "../../../hooks/request";
 import Container from "../../../hooks/container";
 
@@ -108,7 +108,7 @@ export default function FilmPage() {
                           className="color text-yellow-300"
                         />
                         {actors.map(({ profile_path }, index) => {
-                          return (
+                          return profile_path !== null ? (
                             <div key={index} className="w-[90px] h-[90px]">
                               <img
                                 src={`${process.env.REACT_APP_HOST}${profile_path}`}
@@ -116,7 +116,7 @@ export default function FilmPage() {
                                 alt=""
                               />
                             </div>
-                          );
+                          ) : null;
                         })}
                       </div>
                     </div>

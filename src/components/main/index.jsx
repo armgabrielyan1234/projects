@@ -1,5 +1,7 @@
-import React from "react";
+//import hooks
 import useRequest from "../../hooks/request";
+
+//import components
 import RatedMovies from "./mini-page/mostRatedMovies";
 import PopularMovie from "./mini-page/popularMovie";
 import UpcomingMovie from "./mini-page/upcomingMovie";
