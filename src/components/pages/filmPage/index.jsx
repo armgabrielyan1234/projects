@@ -54,15 +54,15 @@ export default function FilmPage() {
         <div className="w-screen">
           <div className="bg-gradient-to-r w-full  from-gray-600  to-gray-700">
             <div className="flex flex-col">
-              <div className="flex justify-center space-x-5 pt-[25px] ">
-                <div className="card-container justify-center flex items-center  h-[550px] rounded-2xl ">
+              <div className="flex  justify-center space-x-5 pt-[25px]">
+                <div className="card-container xl:justify-center flex-col xl:flex-row w-full flex items-center   rounded-2xl ">
                   <img
                     src={`${
                       data.backdrop_path
                         ? process.env.REACT_APP_HOST + data.backdrop_path
                         : null
                     }`}
-                    className="w-[350px] h-[350px] border-[5px] ml-[70px] mr-10 border-yellow-300 object-cover rounded-2xl "
+                    className=" w-[350px] sm:w-[550px] xl:w-[350px] h-[350px] border-[5px] ml-[70px] mr-10 border-yellow-300 object-cover rounded-2xl "
                     alt=""
                   />
 
@@ -126,16 +126,16 @@ export default function FilmPage() {
               <br />
               <div className="flex flex-col items-center justify-center">
                 <h1 className="text-4xl mt-8 text-white">Trailers</h1>
-                <div className="flex flex-wrap justify-center items-center h-[300px]">
-                  <div className="flex flex-wrap justify-center sm:space-x-4">
+                <div className="flex flex-wrap justify-center items-center  ">
+                  <div className="flex flex-wrap justify-center p-10  sm:space-x-4">
                     {trailers.length > 0 ? (
                       trailers.map((trailer, i) => (
-                        <div key={i}>
+                        <div key={i} className="p-2">
                           <Link to={`/trailer/${data.id}/${i}`}>
-                            <div className="flex flex-wrap">
+                            <div className="flex  flex-wrap">
                               <div className="w-[350px] relative">
                                 <div className="absolute bg-white opacity-60 rounded-[35px] inset-0 flex items-center  justify-center">
-                                  <PlayIcon className="w-20" />
+                                  <PlayIcon className="w-20 justify-center" />
                                 </div>
                                 <img
                                   src={`${process.env.REACT_APP_HOST}${trailer.file_path}`}
@@ -168,7 +168,7 @@ export default function FilmPage() {
               <h1 className="text text-4xl">Similar Films</h1>
             </div>
             <br />
-            <div className="flex flex-wrap space-x-5  m-5">
+            <div className="flex flex-wrap justify-center  m-5">
               {similar.length > 0 ? (
                 similar.map(
                   (
@@ -176,7 +176,7 @@ export default function FilmPage() {
                     i
                   ) => {
                     return backdrop_path !== null ? (
-                      <Link key={i} to={`/film/${id}`}>
+                      <Link key={i} className="p-2" to={`/film/${id}`}>
                         <Container
                           backdrop_path={backdrop_path}
                           vote_average={vote_average}

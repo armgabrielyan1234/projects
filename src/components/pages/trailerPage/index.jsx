@@ -23,7 +23,7 @@ export default function TrailerPage() {
           />
         </div>
       ) : (
-        <div className="bg-gradient-to-r flex justify-center  pt-9 w-screen h-screen from-gray-600 to-gray-700">
+        <div className="bg-gradient-to-r flex justify-center  pt-9 w-screen h-[500px] xl:h-screen from-gray-600 to-gray-700">
           <iframe
             title="Trailer"
             src={`https://www.youtube.com/embed/${key}`}

@@ -70,7 +70,7 @@ export default function Header() {
             </div>
           )}
 
-          <div className="absolute  rounded-b-2xl w-[304px]">
+          <div className="absolute  rounded-b-2xl w-[154px] sm:w-[304px]">
             {searchHelp.map((name, i) => (
               <div
                 key={i}

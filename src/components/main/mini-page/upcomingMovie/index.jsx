@@ -6,7 +6,7 @@ export default function UpcomingMovie({ upcomingMovie }) {
 
   return (
     <div className="flex  flex-col lg:flex-row  pl-5  flex-wrap p-2">
-      <div className="flex w-full flex-wrap gap-2  lg:space-x-[50px] justify-center">
+      <div className="flex w-full flex-wrap gap-2  xl:space-x-[50px] justify-center">
         {displayedMovies.map(({ backdrop_path, id }) => (
           <Link key={id} to={`/film/${id}`}>
             <div className="">
