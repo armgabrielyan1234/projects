@@ -4,13 +4,13 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 //import hooks
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useRequest from "../../../hooks/request";
+import useRequest from "../../../hooks/useRequest";
 
 export default function Header() {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
 
-  const [data, loading, results] = useRequest(
+  const { results } = useRequest(
     `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=false&language=en-US&page=1`,
     process.env.REACT_APP_API_KEY
   );

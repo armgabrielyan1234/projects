@@ -9,26 +9,26 @@ import { PlayIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 // import hooks
-import useRequest from "../../../hooks/request";
+import useRequest from "../../../hooks/useRequest";
 import Container from "../../../hooks/container";
 
 export default function FilmPage() {
   const { uId } = useParams();
-  const [data, loading] = useRequest(
+  const { data, loading } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}?language=en-US`,
     process.env.REACT_APP_API_KEY
   );
 
-  const [SimilarData, SimilarLoading, SimilarResults] = useRequest(
+  const { loading: SimilarLoading, results: SimilarResults } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/similar?language=en-US&page=1`,
     process.env.REACT_APP_API_KEY
   );
 
-  const [TrailerData, TrailerLoading] = useRequest(
+  const { data: TrailerData, loading: TrailerLoading } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/images`,
     process.env.REACT_APP_API_KEY
   );
-  const [CreditData, CreditLoading, CreditResults] = useRequest(
+  const { data: CreditData } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/credits?language=en-US`,
     process.env.REACT_APP_API_KEY
   );

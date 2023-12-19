@@ -1,5 +1,5 @@
 //import hooks
-import useRequest from "../../hooks/request";
+import useRequest from "../../hooks/useRequest";
 
 //import components
 import RatedMovies from "./mini-page/mostRatedMovies";
@@ -7,19 +7,19 @@ import PopularMovie from "./mini-page/popularMovie";
 import UpcomingMovie from "./mini-page/upcomingMovie";
 
 export default function Main() {
-  const [popularMovieData, popularMovieLoading, popularMovieResults] =
+  const { loading: popularMovieLoading, results: popularMovieResults } =
     useRequest(
       process.env.REACT_APP_POPULAR_MOVIE,
       process.env.REACT_APP_API_KEY
     );
 
-  const [upcomingMovieData, upcomingMovieLoading, upcomingMovieResults] =
+  const { loading: upcomingMovieLoading, results: upcomingMovieResults } =
     useRequest(
       process.env.REACT_APP_UPCOMING_MOVIE,
       process.env.REACT_APP_API_KEY
     );
 
-  const [ratedMovieData, ratedMovieLoading, ratedMovieResults] = useRequest(
+  const { loading: ratedMovieLoading, results: ratedMovieResults } = useRequest(
     process.env.REACT_APP_RATED_MOVIE,
     process.env.REACT_APP_API_KEY
   );

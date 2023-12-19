@@ -3,13 +3,13 @@ import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 
 //import hooks
 import { Link, useParams } from "react-router-dom";
-import useRequest from "../../../hooks/request";
+import useRequest from "../../../hooks/useRequest";
 import Container from "../../../hooks/container";
 
 export default function SearchFilms() {
   const { value } = useParams();
 
-  const [data, loading, results] = useRequest(
+  const { loading, results } = useRequest(
     `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=false&language=en-US&page=1`,
     process.env.REACT_APP_API_KEY
   );
@@ -26,10 +26,10 @@ export default function SearchFilms() {
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap h-screen space-x-5 items-center justify-center">
-            <div className="flex justify-center gap-5 flex-wrap m-5">
+          <div className="flex flex-wrap  space-x-5 items-center justify-center">
+            <div className="flex justify-center  gap-5 flex-wrap m-5">
               {results.length < 1 ? (
-                <div className="flex space-x-4 justify-center items-center">
+                <div className="flex space-x-4  justify-center items-center">
                   <ExclamationCircleIcon
                     width={80}
                     className="text-yellow-300"

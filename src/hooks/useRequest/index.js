@@ -1,6 +1,4 @@
 import axios from "axios";
-
-//import hooks
 import { useCallback, useEffect, useState } from "react";
 
 function useRequest(url, apiKey) {
@@ -33,7 +31,7 @@ function useRequest(url, apiKey) {
     request();
   }, [request]);
 
-  return [data, loading, results];
+  return { data, loading, results };
 }
 
 export default useRequest;
