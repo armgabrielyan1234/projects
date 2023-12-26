@@ -19,6 +19,8 @@ export default function FilmPage() {
     process.env.REACT_APP_API_KEY
   );
 
+  console.log(data);
+
   const { loading: SimilarLoading, results: SimilarResults } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/similar?language=en-US&page=1`,
     process.env.REACT_APP_API_KEY

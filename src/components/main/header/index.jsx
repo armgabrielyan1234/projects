@@ -70,11 +70,11 @@ export default function Header() {
             </div>
           )}
 
-          <div className="absolute  rounded-b-2xl w-[154px] sm:w-[304px]">
+          <div className="absolute rounded-b-2xl w-[154px] sm:w-[304px]">
             {searchHelp.map((name, i) => (
               <div
                 key={i}
-                className=" flex p-2 bg-yellow-300 opacity-100 hover:opacity-80 w-full items-center"
+                className=" flex p-2 opacity-100 hover:opacity-80 bg-yellow-300 w-full items-center"
                 onClick={() => {
                   setValue(name);
                 }}
