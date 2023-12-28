@@ -1,8 +1,12 @@
 //import hooks
+import { useContext } from "react";
 import useRequest from "../../../hooks/useRequest";
 import { useParams } from "react-router-dom";
+import { ThemeContext } from "../../../context";
 
 export default function TrailerPage() {
+  const [theme] = useContext(ThemeContext);
+
   const { uId, trailerId } = useParams();
   const { loading, results } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/videos?language=en-US`,
@@ -23,7 +27,11 @@ export default function TrailerPage() {
           />
         </div>
       ) : (
-        <div className="bg-gradient-to-r flex justify-center  pt-9 w-screen h-[500px] xl:h-screen from-gray-600 to-gray-700">
+        <div
+          className={`bg-gradient-to-r flex justify-center  pt-9 w-screen h-[500px] xl:h-screen ${
+            theme === "dark" ? "bg-gray-900" : "from-gray-600 to-gray-700"
+          } `}
+        >
           <iframe
             title="Trailer"
             src={`https://www.youtube.com/embed/${key}`}

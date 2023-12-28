@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <div
-      className={`w-screen pl-[10%] pr-[10%] flex h-[100px] ${
+      className={`w-screen pl-[10%] pr-[10%] flex h-[100px ${
         theme === "dark" ? "bg-black" : "bg-yellow-300"
       } `}
     >

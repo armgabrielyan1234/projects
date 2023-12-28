@@ -4,8 +4,12 @@ import Container from "../../../../hooks/container";
 
 export default function PopularMovie({ popularMovie, theme }) {
   return (
-    <div className="">
-      <h1 className="text text-4xl text-center font-semibold mt-5">
+    <div>
+      <h1
+        className={`text text-4xl text-center font-semibold ${
+          theme === "dark" ? "text-white" : "text-black"
+        } mt-5`}
+      >
         Most popular films
       </h1>
       <div className="flex justify-center gap-5 flex-wrap mt-10">

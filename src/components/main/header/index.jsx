@@ -1,7 +1,7 @@
 //import icons
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { MoonIcon } from "@heroicons/react/24/solid";
-import { SunIcon } from "@heroicons/react/24/solid";
+import { SearchIcon } from "@heroicons/react/solid";
+import { MoonIcon } from "@heroicons/react/solid";
+import { SunIcon } from "@heroicons/react/solid";
 
 //import hooks
 import { useContext, useState } from "react";
@@ -74,14 +74,21 @@ export default function Header() {
             <div className="flex flex-col border-2  border-yellow-500 rounded-t-2xl items-center">
               <div className="flex">
                 <div className={`flex justify-end items-center`}>
-                  <MagnifyingGlassIcon className="w-6 h-6 line-height-6 mr-[-9.2rem] sm:mr-[-17.5rem] relative z-10 float-left" />
+                  <SearchIcon
+                    className={`${
+                      theme === "dark" ? "text-white" : "text-black"
+                    }  w-6 h-6 line-height-6 mr-[-9.2rem] sm:mr-[-17.5rem] relative z-10 float-left`}
+                  />
                 </div>
                 <input
                   type="text"
-                  className="p-2 w-[150px] outline-none sm:w-[300px] bg-gray-600 rounded-t-2xl"
+                  className={`p-2 w-[150px] outline-none sm:w-[300px] ${
+                    theme === "dark" ? "bg-black text-white" : " bg-gray-600"
+                  }  rounded-t-2xl`}
                   placeholder="Enter a Keyword"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
+                  autoComplete="off"
                 />
               </div>
             </div>
@@ -89,14 +96,21 @@ export default function Header() {
             <div className="flex flex-col border-2  border-yellow-500 rounded-2xl items-center">
               <div className="flex">
                 <div className="flex justify-end items-center">
-                  <MagnifyingGlassIcon className="w-6 h-6 line-height-6 mr-[-9.2rem] sm:mr-[-17.5rem] relative z-10 float-left" />
+                  <SearchIcon
+                    className={` ${
+                      theme === "dark" ? "text-white" : "text-black"
+                    } w-6 h-6 line-height-6 mr-[-9.2rem] sm:mr-[-17.5rem] relative z-10 float-left`}
+                  />
                 </div>
                 <input
                   type="text"
-                  className="p-2 w-[150px] outline-none sm:w-[300px] bg-gray-600 rounded-2xl"
+                  className={`p-2 w-[150px] outline-none sm:w-[300px] ${
+                    theme === "dark" ? "bg-black text-white" : " bg-gray-600"
+                  }  rounded-2xl`}
                   placeholder="Enter a Keyword"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
+                  autoComplete="off"
                 />
               </div>
             </div>
@@ -108,10 +122,11 @@ export default function Header() {
                 key={i}
                 className=" flex p-2 bg-yellow-300 opacity-100 hover:opacity-80 w-full items-center"
                 onClick={() => {
-                  setValue(name);
+                  navigate(`/search/${name}`);
+                  setValue("");
                 }}
               >
-                <MagnifyingGlassIcon className="w-6 h-6" />
+                <SearchIcon className="w-6 h-6" />
                 <h2 className="pl-5">
                   {name.length > 15 ? `${name.slice(0, 25)}...` : name}
                 </h2>

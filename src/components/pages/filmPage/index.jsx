@@ -1,25 +1,27 @@
 import { Link, useParams } from "react-router-dom";
 
 //import icons
-import { ClockIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/outline";
-import { BookmarkSquareIcon } from "@heroicons/react/24/outline";
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { PlayIcon } from "@heroicons/react/24/outline";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { ClockIcon } from "@heroicons/react/outline";
+import { StarIcon } from "@heroicons/react/outline";
+import { BookmarkIcon } from "@heroicons/react/outline";
+import { ExclamationCircleIcon } from "@heroicons/react/outline";
+import { PlayIcon } from "@heroicons/react/outline";
+import { UserCircleIcon } from "@heroicons/react/outline";
 
 // import hooks
 import useRequest from "../../../hooks/useRequest";
 import Container from "../../../hooks/container";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context";
 
 export default function FilmPage() {
+  const [theme] = useContext(ThemeContext);
+
   const { uId } = useParams();
   const { data, loading } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}?language=en-US`,
     process.env.REACT_APP_API_KEY
   );
-
-  console.log(data);
 
   const { loading: SimilarLoading, results: SimilarResults } = useRequest(
     `https://api.themoviedb.org/3/movie/${uId}/similar?language=en-US&page=1`,
@@ -54,7 +56,11 @@ export default function FilmPage() {
         </div>
       ) : (
         <div className="w-screen">
-          <div className="bg-gradient-to-r w-full  from-gray-600  to-gray-700">
+          <div
+            className={`bg-gradient-to-r w-full ${
+              theme === "dark" ? "bg-gray-900" : "from-gray-600  to-gray-700"
+            } `}
+          >
             <div className="flex flex-col">
               <div className="flex  justify-center space-x-5 pt-[25px]">
                 <div className="card-container xl:justify-center flex-col xl:flex-row w-full flex items-center   rounded-2xl ">
@@ -95,7 +101,7 @@ export default function FilmPage() {
                       </div>
                       {firstGenre && (
                         <div className="flex sm:space-x-10">
-                          <BookmarkSquareIcon
+                          <BookmarkIcon
                             width={50}
                             className="color text-yellow-300"
                           />
@@ -155,7 +161,11 @@ export default function FilmPage() {
                           width={80}
                           className="text-yellow-300"
                         />
-                        <h1 className="text text-4xl">
+                        <h1
+                          className={`${
+                            theme === "dark" ? "text-white" : "text-black"
+                          } text text-4xl`}
+                        >
                           The Trailers does not found
                         </h1>
                       </div>
@@ -165,12 +175,22 @@ export default function FilmPage() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col  items-center flex-wrap mt-10">
+          <div
+            className={`flex ${
+              theme === "dark" ? "bg-gray-900" : "bg-white"
+            } flex-col  items-center flex-wrap `}
+          >
             <div>
-              <h1 className="text text-4xl">Similar Films</h1>
+              <h1
+                className={`text text-4xl ${
+                  theme === "dark" ? "text-white" : "text-black"
+                }`}
+              >
+                Similar Films
+              </h1>
             </div>
             <br />
-            <div className="flex flex-wrap justify-center  m-5">
+            <div className={`flex flex-wrap justify-center  m-5 `}>
               {similar.length > 0 ? (
                 similar.map(
                   (

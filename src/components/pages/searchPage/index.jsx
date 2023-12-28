@@ -1,13 +1,16 @@
 //import icons
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { ExclamationCircleIcon } from "@heroicons/react/outline";
 
 //import hooks
 import { Link, useParams } from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
 import Container from "../../../hooks/container";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context";
 
 export default function SearchFilms() {
   const { value } = useParams();
+  const [theme] = useContext(ThemeContext);
 
   const { loading, results } = useRequest(
     `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=false&language=en-US&page=1`,
@@ -15,7 +18,7 @@ export default function SearchFilms() {
   );
 
   return (
-    <div className="m-2">
+    <div className="">
       {loading ? (
         <div className="flex w-screen justify-center items-center">
           <img
@@ -26,7 +29,11 @@ export default function SearchFilms() {
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap  space-x-5 items-center justify-center">
+          <div
+            className={`flex flex-wrap  space-x-5 items-center ${
+              theme === "dark" ? "bg-gray-900" : "bg-white"
+            } justify-center`}
+          >
             <div className="flex justify-center  gap-5 flex-wrap m-5">
               {results.length < 1 ? (
                 <div className="flex space-x-4  justify-center items-center">
@@ -34,7 +41,13 @@ export default function SearchFilms() {
                     width={80}
                     className="text-yellow-300"
                   />
-                  <h1 className="text text-4xl">The film does not found</h1>
+                  <h1
+                    className={`text text-4xl ${
+                      theme === "dark" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    The film does not found
+                  </h1>
                 </div>
               ) : (
                 results.map(

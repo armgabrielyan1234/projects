@@ -5,8 +5,12 @@ import Container from "../../../../hooks/container";
 export default function RatedMovies({ ratedMovie, theme }) {
   const displayedMovies = ratedMovie.slice(0, 4);
   return (
-    <div className="">
-      <h1 className="text text-4xl text-center font-semibold mt-5">
+    <div className="mb-5">
+      <h1
+        className={`text text-4xl text-center ${
+          theme === "dark" ? "text-white" : "text-black"
+        } font-semibold mt-5`}
+      >
         Most rated films
       </h1>
       <div className="flex justify-center gap-5 flex-wrap mt-10">

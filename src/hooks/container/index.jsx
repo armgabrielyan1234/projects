@@ -1,4 +1,4 @@
-// import icon
+// import
 import { ClockIcon, StarIcon } from "@heroicons/react/outline";
 import { useContext } from "react";
 import { ThemeContext } from "../../context";
@@ -34,11 +34,23 @@ export default function Container({
         <div className="flex justify-between text text-xl">
           <div className="flex">
             <ClockIcon className="w-8 text-yellow-300 " />
-            <p className="p-2">{vote_count}</p>
+            <p
+              className={`p-2 ${
+                theme === "dark" ? "text-white" : "text-black"
+              }`}
+            >
+              {vote_count}
+            </p>
           </div>
           <div className="flex">
             <StarIcon className="w-8 text-yellow-300" />
-            <p className="p-2">{vote_average.toFixed(1)}</p>
+            <p
+              className={`p-2 ${
+                theme === "dark" ? "text-white" : "text-black"
+              }`}
+            >
+              {vote_average.toFixed(1)}
+            </p>
           </div>
         </div>
       </div>

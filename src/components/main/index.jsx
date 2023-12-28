@@ -57,9 +57,7 @@ export default function Main() {
           </div>
         </div>
       )}
-      <br />
-      <br />
-      <br />
+
     </div>
   );
 }
