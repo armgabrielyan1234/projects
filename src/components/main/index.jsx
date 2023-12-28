@@ -1,12 +1,16 @@
 //import hooks
+import { useContext } from "react";
 import useRequest from "../../hooks/useRequest";
 
 //import components
 import RatedMovies from "./mini-page/mostRatedMovies";
 import PopularMovie from "./mini-page/popularMovie";
 import UpcomingMovie from "./mini-page/upcomingMovie";
+import { ThemeContext } from "../../context";
 
 export default function Main() {
+  const [theme] = useContext(ThemeContext);
+
   const { loading: popularMovieLoading, results: popularMovieResults } =
     useRequest(
       process.env.REACT_APP_POPULAR_MOVIE,
@@ -36,12 +40,20 @@ export default function Main() {
         </div>
       ) : (
         <div>
-          <div className="bg-gradient-to-r w-screen from-gray-600 to-gray-700">
+          <div
+            className={`bg-gradient-to-r w-screen ${
+              theme === "dark" ? "bg-black" : "from-gray-600 to-gray-700"
+            }`}
+          >
             <UpcomingMovie upcomingMovie={upcomingMovieResults} />
           </div>
-          <div className="flex justify-center gap-5 flex-wrap mt-5">
-            <PopularMovie popularMovie={popularMovieResults} />
-            <RatedMovies ratedMovie={ratedMovieResults} />
+          <div
+            className={`flex justify-center ${
+              theme === "dark" ? "bg-gray-900" : "bg-white"
+            } gap-5 flex-wrap`}
+          >
+            <PopularMovie popularMovie={popularMovieResults} theme={theme} />
+            <RatedMovies ratedMovie={ratedMovieResults} theme={theme} />
           </div>
         </div>
       )}

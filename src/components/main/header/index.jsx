@@ -1,10 +1,13 @@
 //import icons
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { MoonIcon } from "@heroicons/react/24/solid";
+import { SunIcon } from "@heroicons/react/24/solid";
 
 //import hooks
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
+import { ThemeContext } from "../../../context";
 
 export default function Header() {
   const [value, setValue] = useState("");
@@ -20,8 +23,20 @@ export default function Header() {
   });
   const searchHelp = searchValue.slice(0, 3);
 
+  const [theme, setTheme] = useContext(ThemeContext);
+
+  const handleThemeSwitch = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className="w-screen items-center flex justify-between pb-5 pl-[10%]  pr-[10%] pt-5 bg-gradient-to-r from-gray-600 to-gray-700">
+    <div
+      className={`w-screen items-center ${
+        theme === "dark"
+          ? "bg-black"
+          : "bg-gradient-to-r from-gray-600 to-gray-700"
+      } flex justify-between pb-5 pl-[10%]  pr-[10%] pt-5 `}
+    >
       <div className="w-[120px]">
         <Link to={"/"}>
           <div className="flex items-end">
@@ -30,7 +45,24 @@ export default function Header() {
           </div>
         </Link>
       </div>
-      <div>
+      <div className="flex items-center gap-4">
+        <div>
+          {theme === "light" ? (
+            <SunIcon
+              className="w-[40px] text-white "
+              onClick={() => {
+                handleThemeSwitch();
+              }}
+            />
+          ) : (
+            <MoonIcon
+              className="w-[30px] text-white"
+              onClick={() => {
+                handleThemeSwitch();
+              }}
+            />
+          )}
+        </div>
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -70,11 +102,11 @@ export default function Header() {
             </div>
           )}
 
-          <div className="absolute rounded-b-2xl w-[154px] sm:w-[304px]">
+          <div className="absolute  rounded-b-2xl w-[154px] sm:w-[304px]">
             {searchHelp.map((name, i) => (
               <div
                 key={i}
-                className=" flex p-2 opacity-100 hover:opacity-80 bg-yellow-300 w-full items-center"
+                className=" flex p-2 bg-yellow-300 opacity-100 hover:opacity-80 w-full items-center"
                 onClick={() => {
                   setValue(name);
                 }}

@@ -1,7 +1,7 @@
 //import hooks
 import { Link } from "react-router-dom";
 
-export default function UpcomingMovie({ upcomingMovie }) {
+export default function UpcomingMovie({ upcomingMovie, theme }) {
   const displayedMovies = upcomingMovie.slice(0, 2);
 
   return (

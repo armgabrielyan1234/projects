@@ -7,18 +7,21 @@ import FilmPage from "./components/pages/filmPage";
 import TrailerPage from "./components/pages/trailerPage";
 import Layout from "./layout";
 import SearchFilms from "./components/pages/searchPage";
+import { ThemeProvider } from "./context";
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/film/:uId" element={<FilmPage />} />
-          <Route path="/trailer/:uId/:trailerId" element={<TrailerPage />} />
-          <Route path="/search/:value" element={<SearchFilms />} />
-        </Routes>
-      </Layout>
+      <ThemeProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/film/:uId" element={<FilmPage />} />
+            <Route path="/trailer/:uId/:trailerId" element={<TrailerPage />} />
+            <Route path="/search/:value" element={<SearchFilms />} />
+          </Routes>
+        </Layout>
+      </ThemeProvider>
     </div>
   );
 }

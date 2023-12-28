@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import Container from "../../../../hooks/container";
 
-export default function PopularMovie({ popularMovie }) {
+export default function PopularMovie({ popularMovie, theme }) {
   return (
     <div className="">
       <h1 className="text text-4xl text-center font-semibold mt-5">

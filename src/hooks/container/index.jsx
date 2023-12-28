@@ -1,6 +1,7 @@
-//import icons
-import { ClockIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/outline";
+// import icon
+import { ClockIcon, StarIcon } from "@heroicons/react/outline";
+import { useContext } from "react";
+import { ThemeContext } from "../../context";
 
 export default function Container({
   backdrop_path,
@@ -8,6 +9,8 @@ export default function Container({
   vote_count,
   vote_average,
 }) {
+  const [theme] = useContext(ThemeContext);
+
   return (
     <div className="card-container w-[300px] h-[440px] rounded-2xl border-[3px] p-5 border-yellow-300">
       <div>
@@ -18,7 +21,11 @@ export default function Container({
         />
         <br />
         <div className="flex h-[80px] space-x-9">
-          <h1 className="text-2xl font-semibold text-center">
+          <h1
+            className={`text-2xl font-semibold ${
+              theme === "dark" ? "text-white" : "text-black"
+            } text-center`}
+          >
             {title.length > 15 ? ` ${title.slice(0, 25)}... ` : title}
           </h1>
           <br />

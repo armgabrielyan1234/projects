@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import Container from "../../../../hooks/container";
 
-export default function RatedMovies({ ratedMovie }) {
+export default function RatedMovies({ ratedMovie, theme }) {
   const displayedMovies = ratedMovie.slice(0, 4);
   return (
     <div className="">
