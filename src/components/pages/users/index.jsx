@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { request } from "../../../hooks";
 
 function User() {
   const [users, setUsers] = useState([]);
-  useEffect(() => {
-    getUsers();
-  }, []);
 
-  async function getUsers() {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      if (response.ok) {
-        const users = await response.json();
-        setUsers(users);
-      } else {
-        console.log(response.statusText);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const data = request("https://jsonplaceholder.typicode.com/users", "GET");
+  useEffect(() => {
+    setUsers(data);
+  }, [data]);
 
   return (
     <div>

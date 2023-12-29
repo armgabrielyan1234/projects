@@ -1,6 +1,6 @@
-import User from "./components/pages/users/User.jsx";
-import Post from "./components/pages/posts/Post.jsx";
-import Album from "./components/pages/albums/Album.jsx";
+import User from "./components/pages/users/";
+import Post from "./components/pages/posts/";
+import Album from "./components/pages/albums/";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
